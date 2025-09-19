@@ -6,18 +6,24 @@
 <body>
     <script>
         // TODO: Add hello code
-        function getMessage(name) {
-            return 'Hello, ' + name + '...';
-        }
-        const message = getMessage('Ornella');
-        document.write(message);
-        // TODO: Add setTimeout code
-        setTimeout(
-            () => { // arrow function
-                console.log('Done!');
-            },
-            3000 // 3000 milliseconds (3 seconds)
-        )
+        function getDelay(name, like, time=2000) {
+            setTimeout(
+                () => {
+                    const message = `저의 이름은 ${name}이고, ${like}을 좋아합니다. 이상입니다! <br>`;
+                    document.write(message);
+                }, time);
+            }
+
+        let name1 = 'song';
+        let name2 = 'kim';
+        let name3 = 'jin';
+        let name4 = 'moon';
+
+        getDelay(name1,"슈붕");
+        getDelay(name2,"마라탕",4000);
+        getDelay(name3,"디저트",6000);
+        getDelay(name4,"국밥",8000);
+
     </script>
 </body>
 </html>
