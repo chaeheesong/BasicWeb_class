@@ -6,12 +6,18 @@
 <body>
     <script>
         // TODO: Add hello code
-        function hello() {
-            console.log("hello");
+        function getMessage(name) {
+            return 'Hello, ' + name + '...';
         }
-        hello();
+        const message = getMessage('Ornella');
+        document.write(message);
         // TODO: Add setTimeout code
-        setTimeout(3000, hello());
+        setTimeout(
+            () => { // arrow function
+                console.log('Done!');
+            },
+            3000 // 3000 milliseconds (3 seconds)
+        )
     </script>
 </body>
 </html>
