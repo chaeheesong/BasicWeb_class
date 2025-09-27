@@ -16,13 +16,13 @@ console.log(`Player: ${Player}`);
 
     if (Dealer === Player) {
         if(Dealer>=21) {
-            console.log("both lose");
+            console.log("Draw");
         }
         console.log("무승부");
     } else {
         if (Dealer > 21) {
             if(Player > 21) {
-                console.log("both lose");
+                console.log("Bust");
             } else {
                 console.log("You win");
             }
