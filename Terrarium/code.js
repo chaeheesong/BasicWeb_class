@@ -40,6 +40,13 @@ function dragElement(terrariumElement) {
     }
 }
 
+function doubleclick(plant_num) {
+    const plant = document.getElementById(plant_num);
+    const z = parseInt((window.getComputedStyle(plant)).zIndex);
+    plant.style.zIndex = z + 1;
+    console.log('더블클릭 감지됨',plant.style.zIndex);
+}
+
 console.log(document.getElementById('plant1'));
 dragElement(document.getElementById('plant1'));
 dragElement(document.getElementById('plant2'));
@@ -55,3 +62,17 @@ dragElement(document.getElementById('plant11'));
 dragElement(document.getElementById('plant12'));
 dragElement(document.getElementById('plant13'));
 dragElement(document.getElementById('plant14'));
+(document.getElementById('plant1')).ondblclick = () => doubleclick('plant1');
+(document.getElementById('plant2')).ondblclick = () => doubleclick('plant2');
+(document.getElementById('plant3')).ondblclick = () => doubleclick('plant3');
+(document.getElementById('plant4')).ondblclick = () => doubleclick('plant4');
+(document.getElementById('plant5')).ondblclick = () => doubleclick('plant5');
+(document.getElementById('plant6')).ondblclick = () => doubleclick('plant6');
+(document.getElementById('plant7')).ondblclick = () => doubleclick('plant7');
+(document.getElementById('plant8')).ondblclick = () => doubleclick('plant8');
+(document.getElementById('plant9')).ondblclick = () => doubleclick('plant9');
+(document.getElementById('plant10')).ondblclick = () => doubleclick('plant10');
+(document.getElementById('plant11')).ondblclick = () => doubleclick('plant11');
+(document.getElementById('plant12')).ondblclick = () => doubleclick('plant12');
+(document.getElementById('plant13')).ondblclick = () => doubleclick('plant13');
+(document.getElementById('plant14')).ondblclick = () => doubleclick('plant14');
