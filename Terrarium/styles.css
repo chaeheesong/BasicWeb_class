@@ -38,8 +38,8 @@ body {
 }
 .plant {
     position: absolute;
-    max-width: 150%;
-    max-height: 150%;
+    max-width: 130%;
+    max-height: 130%;
     z-index: 2;
 }
 .jar-walls {
