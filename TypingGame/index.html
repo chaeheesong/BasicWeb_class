@@ -2,19 +2,32 @@
     <head>
         <title>Typing game</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     </head>
 
     <body>
-        <h1>Typing game!</h1>
-        <p>Practice your typing skills with a quote from Sherlock Holmes. Click
-        **start** to begin!</p>
-        <p id="quote"></p>
-        <p id="message"></p>
-        <div>
-            <input type="text" aria-label="current word" id="typed-value" />
-            <button type="button" id="start"> Start</button>
+        <div id="finishModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>🎉 수고했어요! 🎉</h2>
+                <p>정말 엄청 잘했어요! 👏👏👏</p>
+            </div>
         </div>
-        
+
+        <div class="box">
+            <div class="header">
+                <i class="fa-regular fa-keyboard fa-3x"></i>
+                <h1 class="title">Typing game</h1>
+            </div>
+            <p>시작버튼을 눌러 타자게임을 시작하세요!</p>
+            <p class="message" id="quote"></p>
+            <p class="" id="message"></p>
+            <div>
+                <input class="inputbox" type="text" aria-label="current word" id="typed-value" />
+                <button class="button" type="button" id="start">시작</button>
+            </div>
+        </div>
+
         <script src="script.js"></script>
     </body>
 </html>
