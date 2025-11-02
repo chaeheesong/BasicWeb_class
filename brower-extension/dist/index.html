@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="style.css">
+
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -8,28 +10,52 @@
     </head>
 
     <body class="container">
-        <img alt="plants and people" src="plants-people.PNG" />
+        <div class="imgbox">
+            <img class="img" alt="plants and people" src="plants-people.PNG" />
+        </div>
         <div>
-            <h1>Welcome to Your Personal Carbon Trigger!</h1>
+            <h1 class="title">Welcome to Your Personal Carbon Trigger!</h1>
         </div>
 
         <form class="form-data" autocomplete="on">
-            <div>
-                <h2>New? Add your Information</h2>
-            </div>
+            
+                <div>
+                    <h2 class="title_2">New? Add your Information</h2>
+                </div>
 
-            <div>
-                <label for="region">Region Name</label>
-            <input type="text" id="region" required class="region-name" />
-            </div>
+            <div class="marg-top">
+                <div class="column">
+                    <label class="label" for="region">Region Name</label>
+                    <input type="text" id="region" 
+                        style="box-sizing: border-box;
+                            background-color: #dddddd;
+                            border-radius: 10px;
+                            border: none;
+                            width: 160px;
+                            height: 40px;
+                            "
+                    required/>
+                </div>
 
-            <div>
-                <label for="api">Your API Key from tmrow</label>
-                <input type="text" id="api" required class="api-key" />
+                <div class="column">
+                    <label class="label" for="api">Your API Key from tmrow</label>
+                    <input type="text" id="api" 
+                        style="box-sizing: border-box;
+                            background-color: #dddddd;
+                            border-radius: 10px;
+                            border: none;
+                            height: 40px;
+                            width: 160px;
+                            -webkit-appearance: none;
+                            appearance: none;"
+                    required/>
+                </div>
             </div>
 
             <button class="search-btn">Submit</button>
         </form>
+
+
         
         <div class="result">
             <div class="loading">loading...</div>
@@ -37,9 +63,12 @@
             <div class="data"></div>
 
             <div class="result-container">
-                <p><strong>Region: </strong><span class="my-region"></span></p>
-                <p><strong>Carbon Usage: </strong><span class="carbon-usage"></span></p>
-                <p><strong>Fossil Fuel Percentage: </strong><span class="fossil-fuel"></span></p>
+                <strong>Region</strong>
+                <span class="my-region"></span>
+                <strong>Carbon Usage</strong>
+                <span class="carbon-usage"></span>
+                <strong>Fossil Fuel Percentage</strong>
+                <span class="fossil-fuel"></span>
             </div>
             
             <button class="clear-btn">Change region</button>
