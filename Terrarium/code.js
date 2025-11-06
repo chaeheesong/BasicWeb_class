@@ -6,7 +6,7 @@ function displayCandy(){
     addCandy('gumdrops');
 }
 displayCandy();
-//console.log(candy);
+
 
 function dragElement(terrariumElement) {
     let pos1 = 0,
@@ -46,6 +46,15 @@ function doubleclick(plant_num) {
     plant.style.zIndex = z + 1;
     console.log('더블클릭 감지됨',plant.style.zIndex);
 }
+
+const dropZone = document.querySelector('.jar-walls');
+
+dropZone.addEventListener('dragstart', (event) => {
+    event.target.classList.add("dragging");
+});
+dropZone.addEventListener('dragend', (event) => {
+    event.target.classList.remove("dragging");
+});
 
 console.log(document.getElementById('plant1'));
 dragElement(document.getElementById('plant1'));

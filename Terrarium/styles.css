@@ -103,3 +103,9 @@ body {
     top: 300px;
     left: 20px;
 }
+.dragging {
+    transform: scale(1.3); /* ← 여기서 커진다! */
+    background-color: blue;
+    opacity: 0.5;
+    cursor: grabbing;
+}
