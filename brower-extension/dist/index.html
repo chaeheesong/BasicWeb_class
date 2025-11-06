@@ -25,8 +25,8 @@
 
             <div class="marg-top">
                 <div class="column">
-                    <label class="label" for="region">Region Name</label>
-                    <input type="text" id="region" 
+                    <label class="label" for="regionName">Region Name</label>
+                    <input type="text" id="regionName" 
                         style="box-sizing: border-box;
                             background-color: #dddddd;
                             border-radius: 10px;
@@ -34,12 +34,12 @@
                             width: 160px;
                             height: 40px;
                             "
-                    required/>
+                    />
                 </div>
 
                 <div class="column">
-                    <label class="label" for="api">Your API Key from tmrow</label>
-                    <input type="text" id="api" 
+                    <label class="label" for="apiKey">Your API Key from tmrow</label>
+                    <input type="text" id="apiKey" 
                         style="box-sizing: border-box;
                             background-color: #dddddd;
                             border-radius: 10px;
@@ -48,7 +48,7 @@
                             width: 160px;
                             -webkit-appearance: none;
                             appearance: none;"
-                    required/>
+                    />
                 </div>
             </div>
 
@@ -63,15 +63,24 @@
             <div class="data"></div>
 
             <div class="result-container">
-                <strong>Region</strong>
-                <span class="my-region"></span>
-                <strong>Carbon Usage</strong>
-                <span class="carbon-usage"></span>
-                <strong>Fossil Fuel Percentage</strong>
-                <span class="fossil-fuel"></span>
+                <div class="row">
+                    <strong class="label">Region</strong>
+                    <span class="my-region">: US-NEISO</span>
+                </div>
+                <div class="bot">
+                    <strong class="label">Carbon Usage</strong>
+                    <span class="carbon-usage">: 292 grams(grams C02 emitted per kilowatt hour)</span>
+                </div>
+                <div class="row-1">
+                    <strong class="label">Fossil Fuel Percentage</strong>
+                    <span class="fossil-fuel">55.41%</span>
+                </div>
+                <span class="fossil">(percentage of fossil fuels used to generate electricity)</span>
             </div>
             
             <button class="clear-btn">Change region</button>
         </div>
+
+        <script src="main.js"></script>
     </body>
 </html>
