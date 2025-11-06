@@ -30,8 +30,7 @@ table{
 }
 body{
     -webkit-text-size-adjust:none;
- /* 뷰포트 변환시 폰트크기 자동확대 방지. */
-    background-color: #ffffff; /* 라이트 모드 배경 */
+    background-color: #ffffff;
     color: #000000;  
 }
 
@@ -40,14 +39,6 @@ html, body {
     height: 1000px;
     margin: 0;
     padding: 0;
-}
-
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #121212; /* 다크 모드 배경 */
-        color: #ffffff;           /* 다크 모드 글자 */
-    }
 }
 
 input[type='text'],input[type='password'],input[type='submit'],input[type='search'],input[type='tel'],input[type='email'],html
@@ -84,27 +75,28 @@ address,caption,cite,code,dfn,em,var{
 }
 .img {
     width: 80%;
-    display: inline-block; /* inline-block이면 text-align 적용 가능 */
+    display: inline-block; 
 }
 .result {
     display: none;
 }
 .search-btn {
-    color: white;              /* 글자 색상 */
-    background-color: blue;    /* 버튼 배경색 */
-    border-radius: 8px;        /* 모서리 둥글게 */
-    border: none;              /* 테두리 제거 */
-    padding: 6px 10px;         /* 버튼 내부 여백 */
-    cursor: pointer;           /* 마우스 올리면 포인터 */
+    color: white;
+    background-color: blue;
+    border-radius: 8px;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
     font-weight: 600;
     margin-top: 10px;
 }
+
 .column {
-    display: flex;           /* Flexbox 활성화 */
-    flex-direction: column;  /* 세로 방향 정렬 */
-    justify-content: center; /* 필요하면 세로 중앙 정렬 */
-    align-items: center;     /* 가로 중앙 정렬 */
-    gap: 5px;               /* 자식 요소 간 간격 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     margin-bottom: 10px;
 }
 .label {
@@ -129,10 +121,77 @@ address,caption,cite,code,dfn,em,var{
 
 .in {
     box-sizing: border-box;
-    background-color: #9999; /* 테두리 색상 */
-    border-radius: 30px; /* 모서리 둥글기 */
+    background-color: #9999;
+    border-radius: 30px;
     border: none;
     height: 30px;
 }
+.my-region{
+    font-weight: 400;
+    font-size: 19px;
+}
+.carbon-usage{
+    font-weight: 400;
+    font-size: 18px;
+}
+.fossil-fuel{
+    font-weight: 400;
+    font-size: 18px;
+}
+.fossil{
+    font-weight: 400;
+    font-size: 18px;
+    width: 250px;
+    display: inline-block;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+.row-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.result-container{
+    margin-top: 20px;
+}
+.bot {
+    margin-bottom: 15px;
+    width: 300px;
+    display: inline-block;
+}
 
+.clear-btn{
+    color: white;
+    background-color: blue;
+    border-radius: 8px;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-left: 90px;
+}
+.container{
+    height: 300px;
+}
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #f5f5f5;
+    }
+    .title {
+        color: #f5f5f5;
+    }
+    .title_2 {
+        color: #f5f5f5;
+    }
+}
