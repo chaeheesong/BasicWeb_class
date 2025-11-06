@@ -1,0 +1,138 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,button{
+    margin:0;
+    padding:0;
+}
+
+fieldset,img{
+    border:0 none;
+}
+dl,ul,ol,menu,li{
+    list-style:none;
+}
+blockquote, q{
+    quotes:none;
+}
+blockquote:before, blockquote:after,q:before, q:after{
+    content:'';content:none;
+}
+input,select,textarea,button{
+    vertical-align:middle;
+    font-size:100%;
+}
+button{
+    border:0 none;
+    background-color:transparent;
+    cursor:pointer;
+}
+table{
+    border-collapse:collapse;
+    border-spacing:0;
+}
+body{
+    -webkit-text-size-adjust:none;
+ /* 뷰포트 변환시 폰트크기 자동확대 방지. */
+    background-color: #ffffff; /* 라이트 모드 배경 */
+    color: #000000;  
+}
+
+html, body {
+    width: 400px;
+    height: 1000px;
+    margin: 0;
+    padding: 0;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212; /* 다크 모드 배경 */
+        color: #ffffff;           /* 다크 모드 글자 */
+    }
+}
+
+input[type='text'],input[type='password'],input[type='submit'],input[type='search'],input[type='tel'],input[type='email'],html
+input[type='button'],input[type='reset']{-webkit-appearance:none;border-radius:0}
+input[type='search']::-webkit-search-cancel-button{-webkit-appearance:none}
+
+body{
+    background:#fff;
+    justify-items: center;
+    text-align: center;
+}
+body,th,td,input,select,textarea,button{
+    font-size:14px;
+    line-height:1.5;
+    font-family:'MalgunGothic','맑은 고딕',sans-serif;
+    color:#333;
+} /* color 값은 디자인가이드에 맞게사용 */
+
+a{
+    color:#333;
+    text-decoration:none;
+}
+a:active, a:hover{
+    text-decoration:none;
+}
+address,caption,cite,code,dfn,em,var{
+    font-style:normal;
+    font-weight:normal;
+}
+.imgbox {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.img {
+    width: 80%;
+    display: inline-block; /* inline-block이면 text-align 적용 가능 */
+}
+.result {
+    display: none;
+}
+.search-btn {
+    color: white;              /* 글자 색상 */
+    background-color: blue;    /* 버튼 배경색 */
+    border-radius: 8px;        /* 모서리 둥글게 */
+    border: none;              /* 테두리 제거 */
+    padding: 6px 10px;         /* 버튼 내부 여백 */
+    cursor: pointer;           /* 마우스 올리면 포인터 */
+    font-weight: 600;
+    margin-top: 10px;
+}
+.column {
+    display: flex;           /* Flexbox 활성화 */
+    flex-direction: column;  /* 세로 방향 정렬 */
+    justify-content: center; /* 필요하면 세로 중앙 정렬 */
+    align-items: center;     /* 가로 중앙 정렬 */
+    gap: 5px;               /* 자식 요소 간 간격 */
+    margin-bottom: 10px;
+}
+.label {
+    font-weight: 700;
+    font-size: 18px;
+}
+.title{
+    font-weight: 400;
+    font-size: 30px;
+    margin-top: 10px;
+    color: black;
+}
+.title_2{
+    font-weight: 400;
+    font-size: 27px;
+    margin-top: 13px;
+    color: black;
+}
+.marg-top {
+    margin-top: 15px;
+}
+
+.in {
+    box-sizing: border-box;
+    background-color: #9999; /* 테두리 색상 */
+    border-radius: 30px; /* 모서리 둥글기 */
+    border: none;
+    height: 30px;
+}
+
+
