@@ -85,4 +85,10 @@ typedValueElement.addEventListener('input', () => {
 });
 
 
+let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+highScores.push({ name: "You", time: elapsedTime });
+highScores.sort((a, b) => a.time - b.time);
+highScores = highScores.slice(0, 5);
+
+localStorage.setItem("highScores", JSON.stringify(highScores));
 
