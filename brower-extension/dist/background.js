@@ -1,9 +1,26 @@
-// background.js
+chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+    console.log('onMessage 수행중');
+	if (msg.action === 'updateIcon') {
+			let iconSizes = [16, 32, 48, 128];
+			let imageDataDict = {};
 
-// 브라우저 확장 프로그램이 로드될 때 실행됨
-console.log("Background script loaded");
+			iconSizes.forEach((size) => {
+					imageDataDict[size] = drawIcon(msg.value.color, size);
+			});
 
-// 필요하면 메시지 처리나 이벤트 추가 가능
-// chrome.runtime.onInstalled.addListener(() => {
-//     console.log("Extension installed or updated");
-// });
+			chrome.action.setIcon({ imageData: imageDataDict });
+	}
+});
+
+function drawIcon(color, size) {
+	let canvas = new OffscreenCanvas(size, size);
+	let context = canvas.getContext('2d');
+
+	context.clearRect(0, 0, size, size);
+	context.beginPath();
+	context.fillStyle = color;
+	context.arc(size / 2, size / 2, size / 2, 0, 2 * Math.PI);
+	context.fill();
+
+	return context.getImageData(0, 0, size, size);
+}
