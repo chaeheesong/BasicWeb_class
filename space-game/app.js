@@ -1,6 +1,7 @@
 let heroImg,
 enemyImg,
 laserImg,
+laserRedShot,
 canvas, ctx,
 gameObjects = [],
 hero;
