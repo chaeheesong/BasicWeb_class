@@ -6,9 +6,11 @@ canvas, ctx,
 gameObjects = [],
 hero,
 meteorBig,
+bossImg,
 lifeImg;
 
 let gameLoopId;
+let bossSpawned = false;
 
 function loadTexture(path) {
     return new Promise((resolve) => {
@@ -49,6 +51,7 @@ window.onload = async () => {
     laserRedShot = await loadTexture("assets/laserRedShot.png");
     lifeImg = await loadTexture("assets/life.png");
     meteorBig = await loadTexture("assets/meteorBig.png");
+    bossImg = await loadTexture("assets/enemyUFO.png");
     initGame();
     gameLoopId = setInterval(() => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -116,9 +119,6 @@ eventEmitter.on(Messages.COLLISION_ENEMY_LASER, (_, { first, second }) => {
     first.dead = true;
     second.dead = true;
     hero.incrementPoints();
-    if (isEnemiesDead()) { // 추가
-        eventEmitter.emit(Messages.GAME_END_WIN);
-    }
 });
 
 eventEmitter.on(Messages.COLLISION_ENEMY_HERO, (_, { enemy }) => {
@@ -127,9 +127,6 @@ eventEmitter.on(Messages.COLLISION_ENEMY_HERO, (_, { enemy }) => {
     if (isHeroDead()) { // 추가
         eventEmitter.emit(Messages.GAME_END_LOSS);
         return; // loss before victory
-    }
-    if (isEnemiesDead()) { // 추가
-        eventEmitter.emit(Messages.GAME_END_WIN);
     }
 });;
 
@@ -276,11 +273,41 @@ class Enemy extends GameObject {
     }
 };
 
+class Boss extends GameObject {
+    constructor(x, y) {
+        super(x, y);
+        this.width = 150;
+        this.height = 120;
+        this.type = "Boss";
+        this.life = 10;
+        this.img = bossImg;
+
+        let id = setInterval(() => {
+            if (this.y < 150) {
+                this.y += 2;
+            } else {
+                clearInterval(id);
+            }
+        }, 50);
+    }
+
+    hit() {
+        this.life--;
+        console.log("보스 목숨",this.life);
+        if (this.life <= 0) {
+            this.dead = true;
+            eventEmitter.emit(Messages.GAME_END_WIN);
+        }
+    }
+}
+
+
 function initGame() {
     gameObjects = [];
     createEnemies();
     createHero();
 
+    console.log("보스 출현상태",bossSpawned);
     eventEmitter.on(Messages.KEY_EVENT_UP, () => {
         hero.y -=5, sub_hero_1.y -=5, sub_hero_2.y -=5 ;
     })
@@ -364,22 +391,43 @@ eventEmitter.on(Messages.COLLISION_ENEMY_LASER, (_, { first, second }) => {
     }, 1000);
 });
 
+function spawnBoss() {
+    if (bossSpawned) {
+        return;
+    }
+    const boss = new Boss(canvas.width / 2 - 75, 0);
+    gameObjects.push(boss);
+    bossSpawned = true;
+}
+
 function updateGameObjects() {
+
     const enemies = gameObjects.filter((go) => go.type === "Enemy");
     const lasers = gameObjects.filter((go) => go.type === "Laser");
     const meteors = gameObjects.filter((go) => go.type === "Meteor")
+    const boss = gameObjects.find(go => go.type === "Boss");
 
     // 1. 레이저 → Enemy 충돌
     lasers.forEach((l) => {
         enemies.forEach((enemy) => {
             if (intersectRect(l.rectFromGameObject(), enemy.rectFromGameObject())) {
+                 enemy.dead = true;
+                l.dead = true;
+
+                hero.incrementPoints();
+                
                 eventEmitter.emit(
                     Messages.COLLISION_ENEMY_LASER,
                     { first: l, second: enemy }
                 );
             }
         });
+        if (boss && !boss.dead && intersectRect(l.rectFromGameObject(), boss.rectFromGameObject())) {
+            l.dead = true;
+            boss.hit();
+        }
     });
+    
     meteors.forEach((m) => {
         enemies.forEach((enemy) => {
             if (intersectRect(m.rectFromGameObject(), enemy.rectFromGameObject())) {
@@ -388,23 +436,38 @@ function updateGameObjects() {
                 enemy.height = 50;
                 enemy.dead = true;
                 hero.incrementPoints();
-
-                if (isEnemiesDead()) {
-                    eventEmitter.emit(Messages.GAME_END_WIN);
-                }
             }
         });
     });
 
+    if (boss) {
+        lasers.forEach(l => {
+            if (intersectRect(l.rectFromGameObject(), boss.rectFromGameObject())) {
+                l.dead = true;
+                boss.hit(1);
+            }
+        });
+        meteors.forEach(m => {
+            if (intersectRect(m.rectFromGameObject(), boss.rectFromGameObject())) {
+                m.dead = true;
+                boss.hit(5);
+            }
+        });
+    }
 
     //const heroRect = hero.rectFromGameObject();
     enemies.forEach(enemy => {
-            const heroRect = hero.rectFromGameObject();
-            if (intersectRect(heroRect, enemy.rectFromGameObject())) {
-                eventEmitter.emit(Messages.COLLISION_ENEMY_HERO, { enemy });
-            }
-        })
+        const heroRect = hero.rectFromGameObject();
+        if (intersectRect(heroRect, enemy.rectFromGameObject())) {
+            eventEmitter.emit(Messages.COLLISION_ENEMY_HERO, { enemy });
+        }
+    })
+
     gameObjects = gameObjects.filter((go) => !go.dead);
+
+    if (isEnemiesDead() && !gameObjects.some(go => go.type === "Boss")) {
+        spawnBoss();
+    }
 }
 
 
@@ -551,6 +614,8 @@ function endGame(win) {
 
 function resetGame() {
     console.log("게임 끝!");
+    bossSpawned = false;
+    console.log("보스 출현상태",bossSpawned);
     if (gameLoopId) {
         clearInterval(gameLoopId); // 게임 루프 중지, 중복 실행 방지
         eventEmitter.clear(); // 모든 이벤트 리스너 제거, 이전 게임 세션 충돌 방지
